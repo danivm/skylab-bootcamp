@@ -1,10 +1,9 @@
 function prepareParams(req, res, next) {
 
-	const limit = +req.query.size || 20;
-	const page = +req.query.page || 1;
-	const skip = (limit*(page-1))+1;
+	let { size: limit=20, page=1, fields } = req.query;
+	limit = +limit;
 
-	const fields = req.query.fields;
+	const skip = ( limit * (page-1))+1;
 
 	if (fields) {
 
@@ -14,6 +13,16 @@ function prepareParams(req, res, next) {
 		}, {} )
 
 		req.projection = projection;
+
+		// const projectionObject = {};
+		// const aFields = fields.split(','); // array w/ fields
+		// for (let i=0; i<aFields.length; i++) {
+		// 	let currentField = aFields[i]; // title | year ...
+		// 	projectionObject[currentField] = 1
+		// }
+
+		// req.projection = projectionObject
+
 	}
 
 	req.limit = limit;

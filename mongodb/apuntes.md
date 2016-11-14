@@ -50,3 +50,6 @@ db.movies.remove(
         year: '1984'
     }
 )
+
+Indice por latitud, longitud:
+db.restaurants.createIndex( { location : "2dsphere" } )
