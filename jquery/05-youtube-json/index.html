@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo AJAX jQuery</title>
+</head>
+<body>
+
+	<h1>YouTube JSON</h1>
+	<p id="title"></p>
+	<a id="link"><img id="thumbnail"></a>
+	<iframe width="560" height="315" frameborder="0" allowfullscreen></iframe>
+
+	<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script>
+
+
+		$.ajax({
+			url: 'youtube.json',
+			dataType: 'json'
+		})
+		.done(function( dataYouTube ) {
+			$("#title").html( dataYouTube.data.items[0].title) ;
+			$("#thumbnail").attr("src", dataYouTube.data.items[0].thumbnail.hqDefault);
+			$("#link").attr("href", dataYouTube.data.items[0].player.default);
+			$("iframe").attr("src", "https://www.youtube.com/embed/hYB0mn5zh2c");
+		})
+
+
+	</script>
+</body>
+</html>

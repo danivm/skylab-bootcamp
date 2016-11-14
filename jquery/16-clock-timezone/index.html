@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Clock</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+
+	<link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+	<div class="container main-container">
+		<h1 id="hour"></h1>
+		<h2 id="timeZone"></h2>
+		<h3 id="convert-text">Convert to timezone</h3>
+		<div>
+			<select id="zones" class="form-control selectpicker" data-live-search="true">
+				<option value="">Select an option...</option>
+			</select>
+		</div>
+		
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.6/jstz.min.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+	
+	<script src="js/moment.min.js"></script>
+	<script src="js/moment-timezone.min.js"></script>
+
+	<script>
+		$('#hour').html(moment().format('HH:mm:ss'));
+		var timezone = jstz.determine();
+		var timezoneName=timezone.name();		
+		$('#timeZone').html(timezoneName);
+		var urlApi='http://api.timezonedb.com/v2/list-time-zone?key=B6Z6WR9L73KQ&format=json'
+		$.ajax({
+			url: urlApi,
+			dataType: 'json',
+		})
+		.done(function(zones){
+			var listZones=""
+			$.each( zones.zones, function(i, zone) {
+				listZones += '<option>' + zone.zoneName + '</option>'
+			})
+			$("#zones").append(listZones).selectpicker('refresh');
+			$('#zones').val(timezoneName)
+		});
+
+		$('#zones').on('change',function(){
+			showClock();
+		})
+
+		function showClock(){
+				var now = moment().format()
+				var zoneSel = $('#zones').val()
+				var hour    = moment.tz(now, zoneSel);
+				$('#hour').html(hour.format('HH:mm:ss'));
+				$('#timeZone').html(zoneSel);
+		}
+
+    	setInterval(showClock, 1000);
+
+
+	</script>
+</body>
+</html>

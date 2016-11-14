@@ -1,0 +1,33 @@
+* {
+	margin:0;
+	padding:0;
+}
+header {
+	height: 100px;
+	background-color: gray;
+}
+nav {
+	height: 10px;
+	background-color: #aaa;
+}
+body {
+	background-color: #eee;
+	padding: 5px;
+}
+aside {
+	background-color: #111;
+	float:left;
+	width: 20%;
+	height: 800px
+}
+main {
+	background-color: #ddd;
+	float:right;
+	width: 80%;
+	height: 800px
+}
+footer {
+	height: 100px;
+	background-color: gray;
+	clear: both;
+}

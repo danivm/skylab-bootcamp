@@ -1,0 +1,85 @@
+$myBlue: #3B5A76;
+
+body {
+	background-color: #EDEDED;
+}
+.main-container {
+	background-color: white;
+	width: 80%;
+	margin: 80px auto 0 auto;
+	border: 1px solid #C1C1C1;
+	padding: 0 30px;
+	
+	h2 {
+		color: $myBlue;
+		font-size: 1.5em;
+	}
+	.header-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		.name {
+			color: $myBlue;
+		}
+		h1 {
+			margin: 5px;
+		}
+		img {
+			width: 150px;
+			margin: -75px auto 20px auto;
+		}
+	}
+	.line {
+		img {
+			width: 100%;
+			margin: 10px;
+		}
+	}
+	.contact {
+		ul {
+			list-style: none;
+			padding:{
+				left: 0;
+				top: 10px;
+			}
+		}
+		li {
+			background: {
+				repeat: no-repeat;
+				size: 18px 18px; 
+			}
+			padding:{
+				left: 25px;
+				bottom: 15px;
+			}
+		}
+		.contact {
+			&-phone {
+				background-image: url("../img/phone.png");
+			}
+			&-facebook {
+				background-image: url("../img/facebook.png");
+			}
+			&-mail {
+				background-image: url("../img/email.png");
+			}
+			&-twitter {
+				background-image: url("../img/twitter.png");
+			}
+		}
+	}
+}
+footer {
+	height: 70px;
+	background-color: $myBlue;
+	p {
+		color: white;
+		padding-top: 20px;
+		
+	}
+	.footer-container {
+		width: 80%;
+	}
+}
+

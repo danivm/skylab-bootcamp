@@ -1,0 +1,24 @@
+.body {
+	background-color: silver;
+}
+
+.main-container {
+	width: 80%;
+	border: 1px solid black;
+	box-shadow: 0 0 20px 2px silver;
+	margin-top: 20px;
+	text-align: center;
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+#hour {
+	font-size: 10vw;
+	text-align: center;
+}
+#timeZone {
+	font-size: 3vw;
+	padding-bottom: 30px;
+}
+#convert-text {
+	font-size: 2vw;
+}

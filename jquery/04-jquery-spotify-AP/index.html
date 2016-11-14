@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Spotify Project</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+</head>
+<body>
+
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Spotify API 🎵</h1>
+			<form id="artist-search" action="" method="POST" class="form" role="form">
+
+				<div class="form-group">
+					<label class="sr-only" for="">label</label>
+					<input type="text" class="form-control"  placeholder="Input artist name...">
+				</div>
+
+				<button type="submit" class="btn btn-primary">Search!</button>
+			</form>
+		</div>
+	</div>
+
+	<div id="results" class="container">
+		<form action="" class="form">
+			<h2> Artists </h2>
+			<select name="" id="artist-results" class="form-control">
+			</select>
+			<h2> Albums </h2>
+			<select name="" id="album-results" class="form-control">
+			</select>
+			<h2> Tracks </h2>
+			<ul id="track-results"></ul>
+
+		</form>
+	</div>
+
+
+
+	<script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script>
+
+		$("#artist-search").on("submit", function(e) {
+
+			e.preventDefault();
+			var $input = $(this).find("input");
+			var artistQuery = $input.val();
+			var URL_SEARCH_API = "https://api.spotify.com/v1/search?type=artist&query="
+			var urlSearchArtist = URL_SEARCH_API + artistQuery;
+
+			$("#artist-results").html("")
+			$("#album-results").html("");
+			$("#track-results").html("");
+
+			$.ajax({
+				url: urlSearchArtist,
+				dataType: 'json'
+			})
+			.done(function( dataArtists ) {
+				var listArtists = "<option>Select artist...</option>";
+				$.each( dataArtists.artists.items, function(i, artist) {
+					listArtists += '<option value="' + artist.id + '">' + artist.name + '</option>'
+				})
+				$("#artist-results").html(listArtists);
+
+			})
+			$("#artist-results").on("change", function() {
+
+				var idArtist = $(this).val();
+				var urlSearchAlbum = 'https://api.spotify.com/v1/artists/'+idArtist+'/albums'
+
+				$.ajax({
+					url: urlSearchAlbum,
+					dataType: 'json'
+				})
+				.done( function ( albumsArtist ) {
+					var listAlbums = "<option>Select album...</option>";
+					$.each( albumsArtist.items, function(i, album) {
+						listAlbums += '<option value="' + album.id + '">' + album.name + '</option>'
+					})
+					$("#album-results").html(listAlbums);
+				})
+			})
+			$("#album-results").on("change", function() {
+				var idAlbum = $(this).val();
+				var urlSearchTrack = 'https://api.spotify.com/v1/albums/'+idAlbum+'/tracks';
+				$.ajax({
+					url: urlSearchTrack,
+					dataType: 'json'
+				})
+				.done( function ( tracksAlbum ) {
+					var listTracks = ""
+
+					$.each( tracksAlbum.items, function(i, track) {
+						listTracks += '<li><a target="_blank" href="' + track.preview_url + '">' + track.name + '</a></li>'
+					})
+					$("#track-results").html(listTracks);
+				})
+
+			})
+
+
+		})
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+/* line 3, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+body {
+  background-color: #EDEDED;
+}
+
+/* line 6, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container {
+  background-color: white;
+  width: 80%;
+  margin: 80px auto 0 auto;
+  border: 1px solid #C1C1C1;
+  padding: 0 30px;
+}
+
+/* line 13, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container h2 {
+  color: #3B5A76;
+  font-size: 1.5em;
+}
+
+/* line 17, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* line 22, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .header-container .name {
+  color: #3B5A76;
+}
+
+/* line 25, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .header-container h1 {
+  margin: 5px;
+}
+
+/* line 28, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .header-container img {
+  width: 150px;
+  margin: -75px auto 20px auto;
+}
+
+/* line 34, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .line img {
+  width: 100%;
+  margin: 10px;
+}
+
+/* line 40, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .contact ul {
+  list-style: none;
+  padding-left: 0;
+  padding-top: 10px;
+}
+
+/* line 47, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .contact li {
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  padding-left: 25px;
+  padding-bottom: 15px;
+}
+
+/* line 58, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .contact .contact-phone {
+  background-image: url("../img/phone.png");
+}
+
+/* line 61, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .contact .contact-facebook {
+  background-image: url("../img/facebook.png");
+}
+
+/* line 64, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .contact .contact-mail {
+  background-image: url("../img/email.png");
+}
+
+/* line 67, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+.main-container .contact .contact-twitter {
+  background-image: url("../img/twitter.png");
+}
+
+/* line 73, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+footer {
+  height: 70px;
+  background-color: #3B5A76;
+}
+
+/* line 76, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+footer p {
+  color: white;
+  padding-top: 20px;
+}
+
+/* line 81, /Users/Daniel/projects/bootstrap-exercises/02-portfolio/sass/style.scss */
+footer .footer-container {
+  width: 80%;
+}
+
+/*# sourceMappingURL=../css/style.map */

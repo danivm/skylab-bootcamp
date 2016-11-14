@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Form exercise</title>
+</head>
+<body>
+	<form>
+		<fieldset>
+			<legend>Customer Info</legend>
+			<div>
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" autofocus placeholder="Enter your mail" required>
+			</div>
+			<div>
+				<label for="phone">Telephone:</label>
+				<input type="tel" id="phone" name="phone" placeholder="1-234-567-8910" pattern="[0-9]-[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+			</div>
+			<div>
+				<label for="email">Email adress:</label>
+				<input type="email" id="email" name="email" placeholder="pepe@pepe.es" multiple required>
+			</div>
+			
+		</fieldset>
+		<fieldset>
+			<legend>Books</legend>
+			<input type="text" name="name" list="books">
+			<datalist id="books">
+				<option>Book 1</option>
+				<option>Book 2</option>
+				<option>Book 3</option>
+			</datalist>
+			<label>Quantity (Maximum 5):</label>
+			<input type="number" name="book_quantity" min=1 max=5>
+		</fieldset>
+		<input type="submit" name="Submit" value="Send">	
+	</form>
+
+</form>
+</body>
+</html>

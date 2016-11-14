@@ -1,0 +1,36 @@
+
+h1, h2, h3{
+	color: chocolate;
+}
+body {
+	background-image: url("images/bg_page.png");
+	background-repeat: repeat-y;
+	background-size: 100%;
+	width: 80%;
+	margin: 0 auto;
+}
+img {
+	width: 90%;
+	height: auto;
+}
+body > div:first-child {
+	text-align: center;
+	border-bottom: 3px solid green;
+}
+.container h1, .container p{
+	margin-left: 20px;
+}
+.container {
+	border-bottom: 3px solid green;
+}
+.block {
+	background-color: khaki;
+	border: 2px dashed orange;
+	padding: 20px;
+}
+strong {
+	color: #fc6512 ;
+}
+.red {
+	color: red;
+}

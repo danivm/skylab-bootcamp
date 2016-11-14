@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Subir archivos con Firebase</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+
+
+</head>
+<body>
+	<div ng-controller = "uploadController">
+
+        <input type="file" id="campoarchivo">
+        <div id="progress-div"></div>
+        <div id="mensaje"></div>
+
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+    	apiKey: " ",
+    	authDomain: " ",
+    	databaseURL: " ",
+    	storageBucket: " ",
+    	messagingSenderId: " "
+    };
+    firebase.initializeApp(config);
+
+    // Servicios de APIs Firebase
+    var authService = firebase.auth();
+    var storageService = firebase.storage();
+
+
+    angular.module('myApp', [])
+	    .controller('uploadController', function($scope, $rootScope) {
+	    	console.log('log 2')
+
+	    	window.onload = function() {
+			    // realizamos la autenticación anónima (debe estar activada en la consola de Firebase)
+			    authService.signInAnonymously()
+			    .catch(function(error) {
+			    	console.error('Detectado error de autenticación', error);
+			    });
+			    // asociamos el manejador de eventos sobre el INPUT FILE
+			    document.getElementById('campoarchivo').addEventListener('change', function(evento){
+			      	evento.preventDefault();
+			      	var archivo  = evento.target.files[0];
+			      	$scope.subirArchivo(archivo);
+			    });
+	  		}
+
+	    // función que se encargará de subir el archivo
+	    	$scope.subirArchivo = function(archivo) {
+			    // creo una referencia al lugar donde guardaremos el archivo
+			    var refStorage = storageService.ref('bike_images').child(archivo.name);
+			    // Comienzo la tarea de upload
+			    var uploadTask = refStorage.put(archivo);
+
+			    // defino un evento para saber qué pasa con ese upload iniciado
+		      	uploadTask.on('state_changed', 
+			      	function(snapshot){
+			      		var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+			      		updateProgress(percentage);
+			      	},
+			      	function(error){
+			      		console.log('Error al subir el archivo', error);
+			      	},
+			      	function(){
+			      		console.log('Subida completada');
+			      		mensajeFinalizado(uploadTask.snapshot.downloadURL, uploadTask.snapshot.totalBytes);
+			      	}
+		      	);
+	  		}
+
+		    // a esta función la invocamos para mostrar el mensaje final después del upload
+		    function mensajeFinalizado(url, bytes) {
+		    	var elMensaje = document.getElementById('mensaje');
+		    	var textoMensaje = '<p>Subido el archivo!';
+		    	textoMensaje += '<br>Bytes subidos: ' + bytes;
+		    	textoMensaje += '<br><a href="' + url + '">Ver el fichero</a></p>';
+		    	elMensaje.innerHTML = textoMensaje;
+		    }
+		    function updateProgress(percentage) {
+		    	var pDiv = document.getElementById('progress-div');
+		    	var textoMensaje = '<progress value="'+percentage+'" max="100"></progress>';
+		    	pDiv.innerHTML = textoMensaje;
+		    }
+
+
+});
+
+
+    "The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section."
+</script>
+</body>
+</html>
