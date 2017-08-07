@@ -1,10 +1,10 @@
 #KATAS
 
-[Grade Book](exercices-javascript/katas/gradeBook/SpecRunner.html)
+[Grade Book](gradeBook/SpecRunner.html)
 
-[Fizz Buzz](exercices-javascript/katas/fizzBuzz/SpecRunner.html)
+[Fizz Buzz](fizzBuzz/SpecRunner.html)
 
-[Drink About](exercices-javascript/katas/drinkAbout/SpecRunner.html)
+[Drink About](drinkAbout/SpecRunner.html)
 
-[Rock Paper Scissors](exercices-javascript/katas/rockPaperScissors/SpecRunner.html)
+[Rock Paper Scissors](rockPaperScissors/SpecRunner.html)
 
